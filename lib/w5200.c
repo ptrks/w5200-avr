@@ -35,8 +35,8 @@ static void w5200_write_register(uint16_t addr, uint8_t data) {
     spi_transfer(0x80);
     spi_transfer(0x01);
     spi_transfer(data);
-
-	spi_cs_high();
+    
+    spi_cs_high();
 
 }
 
@@ -50,16 +50,8 @@ void w5200_init(uint8_t *mac, uint8_t *ip, uint8_t *gw, uint8_t *subnet) {
 	_delay_ms(300);
 	spi_enable();
 
-
-
-
+	/* Software reset  */
 	w5200_write_register(MR,0x80);
-	_delay_ms(1);
-
-
-	/* SW Reset  */
-	
-
 	
 	/* Set mac address */
 	for(i = 0; i < 6; i++) 
@@ -77,7 +69,7 @@ void w5200_init(uint8_t *mac, uint8_t *ip, uint8_t *gw, uint8_t *subnet) {
 	for(i = 0; i < 4; i++)
 		w5200_write_register((SUBR+i),subnet[i]);
 
-
+	/* Debug Logging */
 	if(debug) {
 		  printf("----------------w5200 Init----------------\n");
  		  printf("IP Address  : %d.%d.%d.%d\n",w5200_read_register(SIPR+0),w5200_read_register(SIPR+1),w5200_read_register(SIPR+2),w5200_read_register(SIPR+3));
