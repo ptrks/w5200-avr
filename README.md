@@ -4,7 +4,7 @@ w5200-avr
 AVR library for Wiznet w5200 module
 
 
-###Getting Started
+### Getting Started
 Hooking up the WIZ820io module to your microcontroller is very straight forward. 
 
 ![alt tag](http://i.imgur.com/vQwbCDx.png)
